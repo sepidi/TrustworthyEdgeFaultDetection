@@ -18,7 +18,7 @@ Source condition: C0; shifted conditions: C1, C2, C3; LAC conformal sets, alpha 
 - Shifted windows with confidence > 0.9: accuracy (fraction of windows): **0.764 (0.76)**
 - Reliability diagram, top bin accuracy (confidence > 0.933): **0.786 (n=2185)**
 
-## Compression vs. trust: ResNet-1D (20 configurations, Table II definitions)
+## Compression vs. trust: ResNet-1D (20 configurations, Table III definitions)
 
 - bAcc at source, range over configurations: **0.727--0.758**
 - bAcc mean over shift, range over configurations: **0.634--0.669**
@@ -58,7 +58,7 @@ Source condition: C0; shifted conditions: C1, C2, C3; LAC conformal sets, alpha 
 - |worst-cond. coverage(int8_src) - FP32| under bearing-level CP, max over ratios: **0.008**
 - |worst-cond. coverage(int8_all) - FP32| under bearing-level CP, max over ratios: **0.005**
 
-## Compression vs. trust: WDCNN (20 configurations, Table II definitions)
+## Compression vs. trust: WDCNN (20 configurations, Table III definitions)
 
 - bAcc at source, range over configurations: **0.603--0.717**
 - bAcc mean over shift, range over configurations: **0.498--0.589**
@@ -123,7 +123,7 @@ Source condition: C0; shifted conditions: C1, C2, C3; LAC conformal sets, alpha 
 - End-to-end Python call (p50), range over all engines: **1.58--2.62 ms**
 - Real-time margin: window length / slowest end-to-end p50: **391x**
 
-## Accuracy-only vs. trust-aware deployment (selection.csv; also in Table IV)
+## Accuracy-only vs. trust-aware deployment (selection.csv; also in Table VI)
 
 
 ```
@@ -131,10 +131,74 @@ Source condition: C0; shifted conditions: C1, C2, C3; LAC conformal sets, alpha 
 arch     rule                                                                                                                                                                                                                                   
 resnet1d accuracy-only                   0.750  0.173     0.744       0.639          0.163         0.302          0.481         1.114               0.666              1.483                    0.768                   1.676      NaN       NaN
          trust-aware (lobo_mondrian CP)  0.800  0.165     0.729       0.643          0.143         0.297          0.486         1.079               0.640              1.469                    0.764                   1.629    0.835     2.445
-         trust-aware (mondrian CP)       0.567  0.584     0.732       0.643          0.162         0.282          0.478         1.109               0.570              1.343                    0.836                   1.768    0.880     2.000
+         trust-aware (mondrian CP)       0.800  0.165     0.727       0.666          0.143         0.302          0.534         1.096               0.656              1.507                    0.803                   1.681    0.880     3.039
          trust-aware (src CP)            0.800  0.165     0.727       0.666          0.143         0.302          0.534         1.096               0.656              1.507                    0.803                   1.681    0.510     2.301
 wdcnn    accuracy-only                   0.400  0.106     0.691       0.581          0.255         0.324          0.426         1.222               0.658              1.628                    0.609                   1.611      NaN       NaN
          trust-aware (lobo_mondrian CP)  0.733  0.099     0.624       0.519          0.153         0.245          0.445         1.250               0.642              1.570                    0.841                   1.977    0.836     2.617
-         trust-aware (mondrian CP)       0.000  0.137     0.714       0.589          0.302         0.332          0.435         1.175               0.580              1.480                    0.712                   1.684    0.860     2.156
-         trust-aware (src CP)            0.567  0.113     0.663       0.544          0.166         0.235          0.480         1.193               0.556              1.474                    0.773                   1.913    0.502     2.000
+         trust-aware (mondrian CP)       0.167  0.111     0.709       0.595          0.278         0.332          0.486         1.265               0.592              1.519                    0.719                   1.665    0.860     2.804
+         trust-aware (src CP)            0.567  0.101     0.663       0.544          0.166         0.235          0.480         1.193               0.556              1.475                    0.773                   1.913    0.502     2.360
 ```
+
+## Why temperature scaling fails, proper scoring rules (Jetson FP32, test bearings)
+
+- ResNet-1D: fitted temperature T per fold (ratio x fold): **0%: A=0.21, B=7.25, C=0.21; 30%: A=0.11, B=7.39, C=0.05; 50%: A=0.11, B=5.75, C=0.07; 70%: A=0.07, B=4.19, C=0.05; 85%: A=0.07, B=1.89, C=0.12**
+- ResNet-1D: val-fit/C0 accuracy of the validation bearings per fold (dense): **A=1.00, B=0.50, C=1.00**
+- ResNet-1D: shifted nll by pruning ratio: **0%: 1.561, 30%: 1.729, 50%: 1.300, 70%: 1.050, 85%: 0.754**
+- ResNet-1D: shifted brier by pruning ratio: **0%: 0.579, 30%: 0.579, 50%: 0.546, 70%: 0.521, 85%: 0.428**
+- ResNet-1D: shifted conf by pruning ratio: **0%: 0.920, 30%: 0.919, 50%: 0.889, 70%: 0.836, 85%: 0.742**
+- ResNet-1D: shifted macro-F1, range over configurations: **0.596--0.641**
+- WDCNN: fitted temperature T per fold (ratio x fold): **0%: A=0.58, B=3.94, C=0.21; 30%: A=0.77, B=4.41, C=0.70; 50%: A=0.84, B=3.62, C=0.06; 70%: A=0.30, B=2.14, C=0.05; 85%: A=0.71, B=1.30, C=0.11**
+- WDCNN: val-fit/C0 accuracy of the validation bearings per fold (dense): **A=0.97, B=0.52, C=1.00**
+- WDCNN: shifted nll by pruning ratio: **0%: 1.524, 30%: 1.441, 50%: 1.131, 70%: 0.983, 85%: 0.943**
+- WDCNN: shifted brier by pruning ratio: **0%: 0.668, 30%: 0.678, 50%: 0.612, 70%: 0.565, 85%: 0.557**
+- WDCNN: shifted conf by pruning ratio: **0%: 0.890, 30%: 0.877, 50%: 0.807, 70%: 0.715, 85%: 0.548**
+- WDCNN: shifted macro-F1, range over configurations: **0.470--0.542**
+
+## Informativeness of conformal sets (test bearings)
+
+
+ResNet-1D, dense FP32 (mean over folds; size/singleton/empty averaged over C0-C3):
+
+```
+                     covmin   size  single  empty
+score variant                                    
+aps   lobo_mondrian   0.807  2.494   0.002  0.001
+      lobo_pooled     0.965  2.913   0.000  0.000
+      lobo_src        0.804  2.397   0.003  0.001
+      mondrian        0.976  2.965   0.004  0.000
+      pooled          0.976  2.965   0.004  0.000
+      src             0.976  2.965   0.004  0.000
+lac   lobo_mondrian   0.834  1.823   0.485  0.000
+      lobo_pooled     0.866  1.856   0.465  0.000
+      lobo_src        0.832  1.846   0.486  0.000
+      mondrian        0.644  1.597   0.456  0.123
+      pooled          0.586  1.352   0.673  0.066
+      src             0.478  1.201   0.512  0.224
+```
+
+- ResNet-1D: BL-CP per condition (fold mean): coverage / set size / singleton rate: **C0: 0.910 / 1.62 / 0.619; C1: 0.901 / 2.42 / 0.134; C2: 0.911 / 1.57 / 0.623; C3: 0.910 / 1.69 / 0.564**
+- ResNet-1D: BL-CP singleton rate / set size, range over configurations: **0.464--0.532 / 1.66--1.83**
+- ResNet-1D: BL-CP worst condition per (fold, configuration), counts: **{'C1': 41, 'C0': 16, 'C2': 3}**
+
+WDCNN, dense FP32 (mean over folds; size/singleton/empty averaged over C0-C3):
+
+```
+                     covmin   size  single  empty
+score variant                                    
+aps   lobo_mondrian   0.890  2.580   0.002  0.001
+      lobo_pooled     0.866  2.680   0.000  0.000
+      lobo_src        0.872  2.607   0.000  0.000
+      mondrian        0.911  2.608   0.032  0.012
+      pooled          0.882  2.576   0.043  0.012
+      src             0.882  2.576   0.043  0.012
+lac   lobo_mondrian   0.712  1.684   0.532  0.000
+      lobo_pooled     0.688  1.708   0.517  0.000
+      lobo_src        0.702  1.733   0.513  0.000
+      mondrian        0.580  1.479   0.488  0.128
+      pooled          0.658  1.652   0.532  0.000
+      src             0.435  1.175   0.525  0.225
+```
+
+- WDCNN: BL-CP per condition (fold mean): coverage / set size / singleton rate: **C0: 0.881 / 1.59 / 0.605; C1: 0.712 / 2.04 / 0.316; C2: 0.888 / 1.54 / 0.622; C3: 0.890 / 1.56 / 0.585**
+- WDCNN: BL-CP singleton rate / set size, range over configurations: **0.288--0.532 / 1.68--1.99**
+- WDCNN: BL-CP worst condition per (fold, configuration), counts: **{'C1': 36, 'C3': 12, 'C0': 8, 'C2': 4}**

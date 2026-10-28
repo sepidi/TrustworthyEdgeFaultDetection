@@ -140,8 +140,10 @@ def select(cfg, M, C, cost) -> pd.DataFrame:
             # coverage >= dense coverage - eps and set size <= dense set size + 0.2 (validation estimates only).
             d_cov = agg.loc[dense_key, "cov"] if dense_key in agg.index else 1 - alpha
             d_size = agg.loc[dense_key, "size"] if dense_key in agg.index else smax
-            cov_req = min(1 - alpha - eps, d_cov - eps)
-            size_req = max(smax, d_size + 0.2) if d_cov < 1 - alpha - eps else smax
+            if d_cov >= 1 - alpha - eps and d_size <= smax:  # dense model meets the absolute target
+                cov_req, size_req = 1 - alpha - eps, smax
+            else:  # relative: compression may not lose coverage or inflate sets w.r.t. the dense FP32 model
+                cov_req, size_req = min(1 - alpha - eps, d_cov - eps), max(smax, d_size + 0.2)
             okB = [k for k in agg.index if agg.loc[k, "cov"] >= cov_req and agg.loc[k, "size"] <= size_req]
             fallback = okB == [dense_key] or not okB
             kB = min(okB, key=lambda k: cc_arch.get(k, np.inf)) if okB else dense_key
@@ -346,6 +348,7 @@ SHORT = {"fp32": "FP32", "fp16": "FP16", "int8_src": "I8s", "int8_all": "I8a"}
 def selection_table(sel: pd.DataFrame) -> str:
     """Compact LaTeX: per arch x rule, the per-fold choices (pruned%/precision) and mean+-std test metrics."""
     cols = [("cost", "Lat.\\,[ms]", "{:.3f}"), ("bacc_shift", "bAcc$_{\\mathrm{shift}}$", "{:.3f}"),
+            ("ece_shift_raw", "ECE$_{\\mathrm{shift}}$", "{:.3f}"),
             ("ece_shift_ts", "ECE$^{\\mathrm{TS}}_{\\mathrm{shift}}$", "{:.3f}"),
             ("cov_worst_src", "Cov$^{\\min}_{\\mathrm{src}}$", "{:.3f}"),
             ("cov_worst_mondrian", "Cov$^{\\min}_{\\mathrm{OP}}$", "{:.3f}"),
@@ -368,9 +371,10 @@ def selection_table(sel: pd.DataFrame) -> str:
             m, sd = g[c].mean(), g[c].std()
             cells.append(pm(m, sd if len(g) > 1 else np.nan, fmt))
         lines.append(" & ".join(cells) + r" \\")
-    lines += [r"\bottomrule", r"\multicolumn{%d}{l}{\footnotesize Choice = pruned\%%/precision per fold "
-              r"(I8s/I8a: INT8 calibrated on source/all conditions); $^\dagger$ no candidate met the "
-              r"constraint in some fold, dense FP32 kept.}\\" % (3 + len(cols)), r"\end{tabular}"]
+    any_fb = "fallback_dense" in sel and sel["fallback_dense"].fillna(False).astype(bool).any()
+    note = (r"Choice = pruned\%/precision per fold (I8s/I8a: INT8 calibrated on source/all conditions)"
+            + (r"; $^\dagger$ no candidate met the constraint in some fold, dense FP32 kept." if any_fb else "."))
+    lines += [r"\bottomrule", r"\multicolumn{%d}{l}{\footnotesize %s}\\" % (3 + len(cols), note), r"\end{tabular}"]
     return "\n".join(lines)
 
 
@@ -387,7 +391,9 @@ def jetson_table(cfg) -> str | None:
     name = {"resnet1d": "ResNet-1D", "wdcnn": "WDCNN"}
     sel = [("resnet1d", 0.0, "fp32"), ("resnet1d", 0.0, "fp16"), ("resnet1d", 0.0, "int8_all"),
            ("resnet1d", 0.5, "fp32"), ("resnet1d", 0.85, "fp32"), ("resnet1d", 0.85, "fp16"),
-           ("wdcnn", 0.0, "fp32"), ("wdcnn", 0.0, "int8_all"), ("wdcnn", 0.85, "fp32")]
+           ("resnet1d", 0.85, "int8_all"),
+           ("wdcnn", 0.0, "fp32"), ("wdcnn", 0.0, "int8_all"), ("wdcnn", 0.5, "fp32"), ("wdcnn", 0.85, "fp32"),
+           ("wdcnn", 0.85, "int8_all")]
     lines = [r"\begin{tabular}{l r l r r r r r}", r"\toprule",
              r"Model & Pruned & Prec. & Params & GPU lat. [ms] & Speed-up & End-to-end [ms] & $E_{\mathrm{dyn}}$ [mJ] \\",
              r"\midrule"]

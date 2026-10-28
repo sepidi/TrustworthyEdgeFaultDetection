@@ -1,6 +1,11 @@
 # Replication package — *Does Compression Erode Trust?*
 
-Code, trained models and raw experimental outputs for "A. Çakın and S. Dilek, "Does Compression Erode Trust? Calibration and Conformal Coverage of Pruned and Quantized Bearing-Fault Diagnosis Models on Edge Hardware Under Operating Point Shift," submitted to *IEEE Journal of Emerging and Selected Topics in Industrial Electronics* (special section "Trustworthy Fault Diagnosis and Health Management for Industrial Electronics Systems"), 2026."
+Code, trained models and raw experimental outputs for
+
+> A. Çakın and S. Dilek, "Does Compression Erode Trust? Calibration and Conformal Coverage of Pruned and
+> Quantized Bearing-Fault Diagnosis Models on Edge Hardware Under Operating Point Shift,"
+> submitted to *IEEE Journal of Emerging and Selected Topics in Industrial Electronics* (special section
+> "Trustworthy Fault Diagnosis and Health Management for Industrial Electronics Systems"), 2026.
 
 The study trains two compact CNNs (WDCNN, 1-D ResNet) on the Paderborn bearing data set at one operating
 point, prunes them (0–85 %), deploys them with TensorRT in FP32/FP16/INT8 on a Jetson Orin Nano, and measures
@@ -45,8 +50,8 @@ Regenerates **every table, figure and in-text number** of the paper from the shi
 Needs Python ≥ 3.10 and no GPU, no PyTorch, no data download.
 
 ```bash
-git clone <REPOSITORY-URL> tcfd-replication      # or unzip the archive
-cd tcfd-replication
+git clone https://github.com/sepidi/TrustworthyEdgeFaultDetection.git
+cd TrustworthyEdgeFaultDetection
 python3 -m venv .venv && source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements-analysis.txt
 cp -r results results_shipped                    # keep the shipped results for comparison
@@ -58,7 +63,7 @@ Output (in `results/`):
 
 | File | Content |
 |---|---|
-| `tables/tab_main_resnet1d.tex`, `tables/tab_jetson.tex`, `tables/tab_selection.tex` | Tables III, IV, V of the paper (LaTeX) |
+| `tables/tab_main_resnet1d.tex`, `tab_main_wdcnn.tex`, `tab_jetson.tex`, `tab_selection.tex` | Tables III–VI of the paper (LaTeX) |
 | `figures/fig_acc_ece_resnet1d.pdf`, `fig_coverage_resnet1d.pdf`, `fig_reliability_resnet1d.pdf` | Figs. 2, 3, 4 |
 | `paper_numbers.md` | every number quoted in the text that is not in a table, grouped by paper section |
 | `summary.md` | aggregated metrics for all models, precisions and conformal variants |
@@ -82,15 +87,15 @@ On Windows without bash, run the three Python steps directly:
 | Fig. 1 (pipeline) | drawn in LaTeX (TikZ) | — |
 | Fig. 2 (accuracy and ECE vs. pruning) | `results/figures/fig_acc_ece_resnet1d.pdf` | Tier 1 |
 | Table III (ResNet-1D, all 20 configurations) | `results/tables/tab_main_resnet1d.tex` | Tier 1 |
-| — same for WDCNN (quoted in text) | `results/tables/tab_main_wdcnn.tex` | Tier 1 |
+| Table IV (WDCNN, all 20 configurations) | `results/tables/tab_main_wdcnn.tex` | Tier 1 |
 | Fig. 3 (conformal coverage) | `results/figures/fig_coverage_resnet1d.pdf` | Tier 1 |
-| Table IV (Jetson latency and energy) | `results/tables/tab_jetson.tex` | Tier 1 (from `jetson_out/bench/bench.csv`) |
+| Table V (Jetson latency and energy) | `results/tables/tab_jetson.tex` | Tier 1 (from `jetson_out/bench/bench.csv`) |
 | Fig. 4 (reliability diagrams) | `results/figures/fig_reliability_resnet1d.pdf` | Tier 1 |
-| Table V (deployment rules) | `results/tables/tab_selection.tex` | Tier 1 |
-| In-text numbers, Sections VI-A to VI-G | `results/paper_numbers.md` | Tier 1 |
+| Table VI (deployment rules) | `results/tables/tab_selection.tex` | Tier 1 |
+| In-text numbers, Sections VI-A to VI-G (incl. fitted temperatures, NLL/Brier, singleton rates, APS) | `results/paper_numbers.md` | Tier 1 |
 | Input-representation ablation (FFT: 0.41–0.51; no artificial-damage bearings: 0.63 / 0.55) | `results_ablation_fft/`, `results_ablation_noart/` | Tier 3 (shipped as results only) |
 | Hardware and software versions (Section V) | `jetson_out/bench/env.txt`, Section 7 below | — |
-| Supplementary: WDCNN figures, Pareto plots, INT8 calibration-data figure | `results/figures/*_wdcnn.pdf`, `fig_pareto_*.pdf`, `fig_int8_calib.pdf` | Tier 1 |
+| Supplementary (not in the paper): WDCNN figures, Pareto plots, INT8 calibration-data figure | `results/figures/*_wdcnn.pdf`, `fig_pareto_*.pdf`, `fig_int8_calib.pdf` | Tier 1 |
 
 All results use **LAC** conformal scores with α = 0.1 (`analysis.score`, `analysis.alpha`); APS results are
 also in `results/cp.csv`.
@@ -175,7 +180,7 @@ produced (KA08 is a training-only bearing).
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu124   # or the build for your CUDA / CPU
-pip install -r env/requirements-workstation.txt
+pip install -r requirements.txt
 bash tools/selftest.sh                       # optional, ~5 min on CPU: must end with "SELFTEST OK"
 bash scripts/download_pu.sh                  # Section 4
 
@@ -204,7 +209,7 @@ Prepare the board once (JetPack 6.x; TensorRT comes with JetPack — never `pip 
 ```bash
 python3 -c "import tensorrt as t; print(t.__version__)"   # must work
 ls /usr/src/tensorrt/bin/trtexec                          # used for latency/energy
-pip3 install -r env/requirements-jetson.txt                   # polygraphy, numpy<2
+pip3 install -r requirements-jetson.txt                   # polygraphy, numpy<2
 sudo apt install tmux
 sudo nvpmodel -m 2                                        # MAXN_SUPER on our Orin Nano Super; ids differ by board/JetPack,
                                                           # list them with: sudo nvpmodel -p --verbose ; check: sudo nvpmodel -q
@@ -234,7 +239,7 @@ energy depend only on shapes, not weights). Energy is read from `tegrastats` (VD
 columns of `bench.csv` are NaN, re-run `python3 jetson/bench.py` with `sudo -E`.
 
 Without a Jetson, `--backend ort` runs the same scripts with ONNX Runtime on the CPU (FP32 only; used by the
-self-test). This checks the export but does not reproduce TensorRT numerics or Table IV.
+self-test). This checks the export but does not reproduce TensorRT numerics or Table V.
 
 ---
 
@@ -284,11 +289,18 @@ The full Jetson environment of the benchmark run is in `jetson_out/bench/env.txt
 Tier 1 has also been verified to give byte-identical outputs in a fresh CPU-only environment (Python 3.13,
 NumPy 2.5, pandas 3.0/3.1).
 
-<!-- To record your own environment (recommended when reporting a replication):
+To record your own environment (recommended when reporting a replication):
 ```bash
 bash tools/capture_env.sh workstation    # -> env/workstation.txt
 bash tools/capture_env.sh jetson         # on the board -> env/jetson.txt
-``` -->
+```
+
+`env/requirements-workstation.txt` and `env/requirements-jetson.txt` are `pip freeze` snapshots of the exact
+package versions used to produce the paper's results (a stricter, fully-pinned complement to the loose
+`requirements.txt` / `requirements-jetson.txt` at the repository root, which only pin what matters for
+correctness). Installing from the root files is enough for Tiers 1–3; install from the `env/` files instead
+(`pip install -r env/requirements-workstation.txt`, `pip3 install -r env/requirements-jetson.txt`) if a
+dependency conflict shows up and you want to match our environment exactly.
 
 ---
 
@@ -327,7 +339,9 @@ jetson_out/                 logits/<fold>/<model>/<precision>/*.npy (TensorRT lo
 results/                    Tier 1 outputs (Section 1)
 results_ablation_*/         ablation results (Section 6)
 logs/paper_run/             console logs of the workstation run that produced the shipped artifacts
-requirements*.txt           analysis-only / workstation / Jetson dependencies
+requirements*.txt           analysis-only / workstation / Jetson dependencies (loose pins)
+env/                        workstation.txt, jetson.txt (captured versions, Section 7); requirements-workstation.txt,
+                             requirements-jetson.txt (exact pip-freeze pins of the paper run)
 LICENSE, CITATION.cff
 SHA256SUMS                  checksums of all shipped files:  sha256sum -c SHA256SUMS  (before running anything)
 ```
@@ -396,7 +410,7 @@ with ONNX Runtime, evaluation, report and paper numbers on the CPU (~5 min). It 
 | Jetson: NumPy 2 errors in TensorRT | `pip3 install "numpy<2"` |
 | Jetson: smoke test reports `CHECK` for FP32 | real mismatch: check TensorRT version and that `export/` was copied completely; tie-flips marked `ok` are harmless |
 | `bench.csv` energy columns are NaN | run `bench.py` with `sudo -E` so `tegrastats` can read the power rails |
-| latency much higher than Table IV | power mode not MAXN_SUPER or `jetson_clocks` not applied; check `sudo nvpmodel -q` |
+| latency much higher than Table V | power mode not MAXN_SUPER or `jetson_clocks` not applied; check `sudo nvpmodel -q` |
 | `report`: cost uses a "MACs × bytes proxy" | no `bench.csv` found: Jetson results missing, `Lat.` column is then not in milliseconds |
 
 ---

@@ -3,6 +3,7 @@ message: "If you use this code or the shipped artifacts, please cite the paper b
 title: "Replication package: Does Compression Erode Trust? Calibration and Conformal Coverage of Pruned and Quantized Bearing-Fault Diagnosis Models on Edge Hardware Under Operating Point Shift"
 type: software
 license: MIT
+repository-code: "https://github.com/sepidi/TrustworthyEdgeFaultDetection"
 version: "1.0.0"
 date-released: "2026-10-31"
 authors:

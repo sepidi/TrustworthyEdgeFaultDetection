@@ -35,7 +35,7 @@ class Out:
 
 
 def per_fold(M, C, arch, src, shifted):
-    """Per-fold summary per (ratio, precision), same definitions as Table II (tcfd.report.main_table)."""
+    """Per-fold summary per (ratio, precision), same definitions as Table III (tcfd.report.main_table)."""
     Mr = M[(M.arch == arch) & (M.split == "test") & (M.calib == "raw")]
     Mt = M[(M.arch == arch) & (M.split == "test") & (M.calib == "ts")]
     Cc = C[(C.arch == arch) & (C.split == "test") & (C.score == "lac")]
@@ -126,7 +126,7 @@ def main():
         pf = pf[pf.precision.isin(DEV)]
         mean = pf.groupby(["ratio", "precision"]).mean(numeric_only=True)
         std = pf.groupby(["ratio", "precision"]).std(numeric_only=True)
-        o.h(f"Compression vs. trust: {an} ({len(mean)} configurations, Table II definitions)")
+        o.h(f"Compression vs. trust: {an} ({len(mean)} configurations, Table III definitions)")
         o("bAcc at source, range over configurations", rng(mean.bacc_src))
         o("bAcc mean over shift, range over configurations", rng(mean.bacc_shift))
         pr = mean[mean.index.get_level_values(0) > 0]
@@ -240,10 +240,54 @@ def main():
     sp = res / "selection.csv"
     if sp.exists():
         s = pd.read_csv(sp)
-        o.h("Accuracy-only vs. trust-aware deployment (selection.csv; also in Table IV)")
+        o.h("Accuracy-only vs. trust-aware deployment (selection.csv; also in Table VI)")
         num = s.select_dtypes("number").columns
         g = s.groupby([c for c in ("arch", "rule", "variant") if c in s.columns])[list(num)].mean()
         o.lines += ["", "```", g.round(3).to_string(), "```"]
+
+    # --- Additional analyses quoted in the text (calibration mechanism, informativeness) ---------------
+    o.h("Why temperature scaling fails, proper scoring rules (Jetson FP32, test bearings)")
+    for arch, an in ARCHS.items():
+        t = M[(M.arch == arch) & (M.split == "test") & (M.calib == "raw") & (M.precision == "fp32")]
+        if t.empty:
+            continue
+        T = t[t.cond == src].pivot_table(index="ratio", columns="fold", values="T")
+        o(f"{an}: fitted temperature T per fold (ratio x fold)",
+          "; ".join(f"{int(r * 100)}%: " + ", ".join(f"{f}={T.loc[r, f]:.2f}" for f in T.columns) for r in T.index))
+        v = M[(M.arch == arch) & (M.split == "valfit") & (M.calib == "raw") & (M.precision == "fp32")
+              & (M.cond == src)].pivot_table(index="ratio", columns="fold", values="acc")
+        o(f"{an}: val-fit/C0 accuracy of the validation bearings per fold (dense)",
+          ", ".join(f"{f}={v.loc[0.0, f]:.2f}" for f in v.columns))
+        sh = t[t.cond.isin(shifted)].groupby(["ratio", "fold"])[["nll", "brier", "conf", "macro_f1"]].mean() \
+            .groupby("ratio").mean()
+        for col in ("nll", "brier", "conf"):
+            o(f"{an}: shifted {col} by pruning ratio", ", ".join(f"{int(r * 100)}%: {x:.3f}" for r, x in sh[col].items()))
+        mf = M[(M.arch == arch) & (M.split == "test") & (M.calib == "raw") & M.precision.isin(DEV)
+               & M.cond.isin(shifted)].groupby(["ratio", "precision", "fold"]).macro_f1.mean() \
+            .groupby(["ratio", "precision"]).mean()
+        o(f"{an}: shifted macro-F1, range over configurations", rng(mf))
+
+    o.h("Informativeness of conformal sets (test bearings)")
+    T_ = C[(C.split == "test") & C.precision.isin(DEV)]
+    for arch, an in ARCHS.items():
+        d = T_[(T_.arch == arch) & (T_.ratio == 0) & (T_.precision == "fp32")]
+        if d.empty:
+            continue
+        pf = d.groupby(["score", "variant", "fold"]).agg(covmin=("coverage", "min"), size=("set_size", "mean"),
+                                                          single=("singleton", "mean"), empty=("empty", "mean")) \
+            .groupby(["score", "variant"]).mean()
+        o.lines += ["", f"{an}, dense FP32 (mean over folds; size/singleton/empty averaged over C0-C3):", "",
+                    "```", pf.round(3).to_string(), "```", ""]
+        b = d[(d.score == "lac") & (d.variant == "lobo_mondrian")].groupby("cond")[["coverage", "set_size", "singleton"]].mean()
+        o(f"{an}: BL-CP per condition (fold mean): coverage / set size / singleton rate",
+          "; ".join(f"{c}: {r.coverage:.3f} / {r.set_size:.2f} / {r.singleton:.3f}" for c, r in b.iterrows()))
+        a = T_[(T_.arch == arch) & (T_.score == "lac") & (T_.variant == "lobo_mondrian")]
+        if not a.empty:
+            g = a.groupby(["ratio", "precision"])
+            o(f"{an}: BL-CP singleton rate / set size, range over configurations",
+              f"{rng(g.singleton.mean())} / {rng(g.set_size.mean(), '{:.2f}')}")
+            w = a.loc[a.groupby(["ratio", "precision", "fold"]).coverage.idxmin()]
+            o(f"{an}: BL-CP worst condition per (fold, configuration), counts", str(w.cond.value_counts().to_dict()))
 
     out = res / "paper_numbers.md"
     out.write_text("\n".join(o.lines) + "\n")
