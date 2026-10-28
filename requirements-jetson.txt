@@ -1,0 +1,7 @@
+# Jetson Orin Nano. TensorRT and its Python bindings come with JetPack - do NOT pip install tensorrt.
+# Used for the paper: Jetson Linux R36.5 (JetPack 6.x), TensorRT 10.3.0, Polygraphy 0.53.6, MAXN_SUPER power mode.
+# Keep numpy < 2: the JetPack TensorRT bindings are built against numpy 1.x.
+numpy<2
+polygraphy==0.53.6
+# optional, only for --backend ort dry runs:
+# onnxruntime

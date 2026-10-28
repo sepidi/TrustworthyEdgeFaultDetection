@@ -1,0 +1,105 @@
+Fold A  feature=order  train=['K004', 'K005', 'K006', 'KA22', 'KA30', 'KI17', 'KI18', 'KI21']  val=['K003', 'KA16', 'KI16']  test=['K001', 'K002', 'KA04', 'KA15', 'KI04', 'KI14']
+classes=['healthy', 'outer', 'inner']  chance balanced acc = 0.333
+
+== wdcnn: stopped after 16 epochs, best epoch 10 (val_nll 0.260)
+   train   bearings @ C0: balanced acc 1.000  (n=482)
+   valfit  bearings @ C0: balanced acc 0.890  (n=91)
+   test    bearings @ C0: balanced acc 0.536  (n=363)
+   test    bearings @ C1: balanced acc 0.427
+   test    bearings @ C2: balanced acc 0.567
+   test    bearings @ C3: balanced acc 0.509
+   per test bearing @ source:  K001(H)=1.00  K002(H)=0.07  KA04(O)=0.42  KA15(O)=0.27  KI04(I)=1.00  KI14(I)=0.48
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [64 57  0]
+      outer    [58 41 21]
+      inner    [21 11 90]
+
+== resnet1d: stopped after 14 epochs, best epoch 3 (val_nll 0.253)
+   train   bearings @ C0: balanced acc 1.000  (n=482)
+   valfit  bearings @ C0: balanced acc 0.678  (n=91)
+   test    bearings @ C0: balanced acc 0.420  (n=363)
+   test    bearings @ C1: balanced acc 0.200
+   test    bearings @ C2: balanced acc 0.468
+   test    bearings @ C3: balanced acc 0.489
+   per test bearing @ source:  K001(H)=1.00  K002(H)=0.02  KA04(O)=0.00  KA15(O)=0.10  KI04(I)=1.00  KI14(I)=0.42
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [61 60  0]
+      outer    [114   6   0]
+      inner    [18 18 86]
+
+== classical baseline on band-pooled spectra (same bearing-wise split)
+   logreg   train=0.993  test: C0=0.487  C1=0.367  C2=0.506  C3=0.437
+   rforest  train=0.999  test: C0=0.639  C1=0.556  C2=0.663  C3=0.664
+
+Reading guide: train >> test for both CNN and baseline -> bearings are not separable by this feature;
+try the envelope variant (config_env.yaml). Baseline OK but CNN poor -> CNN overfits; try --set train.weight_decay=0.01 or fewer epochs.
+Fold B  feature=order  train=['K001', 'K002', 'K006', 'KA04', 'KA15', 'KI04', 'KI14', 'KI21']  val=['K005', 'KA30', 'KI18']  test=['K003', 'K004', 'KA16', 'KA22', 'KI16', 'KI17']
+classes=['healthy', 'outer', 'inner']  chance balanced acc = 0.333
+
+== wdcnn: stopped after 16 epochs, best epoch 1 (val_nll 1.111)
+   train   bearings @ C0: balanced acc 1.000  (n=484)
+   valfit  bearings @ C0: balanced acc 0.467  (n=90)
+   test    bearings @ C0: balanced acc 0.795  (n=362)
+   test    bearings @ C1: balanced acc 0.489
+   test    bearings @ C2: balanced acc 0.794
+   test    bearings @ C3: balanced acc 0.719
+   per test bearing @ source:  K003(H)=1.00  K004(H)=0.00  KA16(O)=0.97  KA22(O)=0.82  KI16(I)=1.00  KI17(I)=0.98
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [60 36 24]
+      outer    [  0 108  13]
+      inner    [  0   1 120]
+
+== resnet1d: stopped after 16 epochs, best epoch 1 (val_nll 1.371)
+   train   bearings @ C0: balanced acc 1.000  (n=484)
+   valfit  bearings @ C0: balanced acc 0.467  (n=90)
+   test    bearings @ C0: balanced acc 0.820  (n=362)
+   test    bearings @ C1: balanced acc 0.518
+   test    bearings @ C2: balanced acc 0.824
+   test    bearings @ C3: balanced acc 0.750
+   per test bearing @ source:  K003(H)=1.00  K004(H)=0.00  KA16(O)=1.00  KA22(O)=0.92  KI16(I)=1.00  KI17(I)=1.00
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [60 49 11]
+      outer    [  0 116   5]
+      inner    [  0   0 121]
+
+== classical baseline on band-pooled spectra (same bearing-wise split)
+   logreg   train=1.000  test: C0=0.784  C1=0.593  C2=0.772  C3=0.893
+   rforest  train=1.000  test: C0=0.773  C1=0.374  C2=0.761  C3=0.860
+
+Reading guide: train >> test for both CNN and baseline -> bearings are not separable by this feature;
+try the envelope variant (config_env.yaml). Baseline OK but CNN poor -> CNN overfits; try --set train.weight_decay=0.01 or fewer epochs.
+Fold C  feature=order  train=['K002', 'K003', 'K004', 'KA15', 'KA16', 'KA22', 'KI14', 'KI16', 'KI17']  val=['K001', 'KA04', 'KI04']  test=['K005', 'K006', 'KA30', 'KI18', 'KI21']
+classes=['healthy', 'outer', 'inner']  chance balanced acc = 0.333
+
+== wdcnn: stopped after 19 epochs, best epoch 13 (val_nll 0.097)
+   train   bearings @ C0: balanced acc 1.000  (n=545)
+   valfit  bearings @ C0: balanced acc 1.000  (n=90)
+   test    bearings @ C0: balanced acc 0.639  (n=301)
+   test    bearings @ C1: balanced acc 0.304
+   test    bearings @ C2: balanced acc 0.654
+   test    bearings @ C3: balanced acc 0.581
+   per test bearing @ source:  K005(H)=0.65  K006(H)=1.00  KA30(O)=0.12  KI18(I)=1.00  KI21(I)=0.95
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [100  12   9]
+      outer    [33  7 20]
+      inner    [  3   0 117]
+
+== resnet1d: stopped after 14 epochs, best epoch 8 (val_nll 0.093)
+   train   bearings @ C0: balanced acc 1.000  (n=545)
+   valfit  bearings @ C0: balanced acc 0.967  (n=90)
+   test    bearings @ C0: balanced acc 0.642  (n=301)
+   test    bearings @ C1: balanced acc 0.503
+   test    bearings @ C2: balanced acc 0.616
+   test    bearings @ C3: balanced acc 0.609
+   per test bearing @ source:  K005(H)=0.82  K006(H)=1.00  KA30(O)=0.07  KI18(I)=1.00  KI21(I)=0.90
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [110   6   5]
+      outer    [38  4 18]
+      inner    [  1   5 114]
+
+== classical baseline on band-pooled spectra (same bearing-wise split)
+   logreg   train=0.994  test: C0=0.670  C1=0.420  C2=0.618  C3=0.650
+   rforest  train=1.000  test: C0=0.667  C1=0.392  C2=0.642  C3=0.653
+
+Reading guide: train >> test for both CNN and baseline -> bearings are not separable by this feature;
+try the envelope variant (config_env.yaml). Baseline OK but CNN poor -> CNN overfits; try --set train.weight_decay=0.01 or fewer epochs.

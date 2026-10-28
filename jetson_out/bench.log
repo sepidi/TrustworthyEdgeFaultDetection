@@ -1,0 +1,86 @@
+idle VDD_IN = 6.668 W
+[W] 'colored' module is not installed, will not use colors when logging. To enable colors, please install the 'colored' module: python3 -m pip install colored
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p00/fp32.engine
+[1/40] A_wdcnn_p00_fp32: trt_gpu_median_ms=0.1489, py_lat_p50_ms=1.619, qps_b1=6564, p_load_w=8.304, dyn_energy_mj_per_inf=0.2492
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p00/fp16.engine
+[2/40] A_wdcnn_p00_fp16: trt_gpu_median_ms=0.113, py_lat_p50_ms=1.627, qps_b1=6737, p_load_w=8.042, dyn_energy_mj_per_inf=0.2039
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p00/int8_src.engine
+[3/40] A_wdcnn_p00_int8_src: trt_gpu_median_ms=0.125, py_lat_p50_ms=1.614, qps_b1=6978, p_load_w=8.158, dyn_energy_mj_per_inf=0.2135
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p00/int8_all.engine
+[4/40] A_wdcnn_p00_int8_all: trt_gpu_median_ms=0.123, py_lat_p50_ms=1.63, qps_b1=7011, p_load_w=8.125, dyn_energy_mj_per_inf=0.2079
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p30/fp32.engine
+[5/40] A_wdcnn_p30_fp32: trt_gpu_median_ms=0.1279, py_lat_p50_ms=1.613, qps_b1=7568, p_load_w=8.279, dyn_energy_mj_per_inf=0.2128
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p30/fp16.engine
+[6/40] A_wdcnn_p30_fp16: trt_gpu_median_ms=0.1321, py_lat_p50_ms=1.652, qps_b1=5840, p_load_w=7.975, dyn_energy_mj_per_inf=0.2237
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p30/int8_src.engine
+[7/40] A_wdcnn_p30_int8_src: trt_gpu_median_ms=0.1191, py_lat_p50_ms=1.626, qps_b1=7036, p_load_w=8.088, dyn_energy_mj_per_inf=0.2018
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p30/int8_all.engine
+[8/40] A_wdcnn_p30_int8_all: trt_gpu_median_ms=0.1191, py_lat_p50_ms=1.621, qps_b1=7112, p_load_w=8.117, dyn_energy_mj_per_inf=0.2037
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p50/fp32.engine
+[9/40] A_wdcnn_p50_fp32: trt_gpu_median_ms=0.1055, py_lat_p50_ms=1.596, qps_b1=7680, p_load_w=8.11, dyn_energy_mj_per_inf=0.1877
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p50/fp16.engine
+[10/40] A_wdcnn_p50_fp16: trt_gpu_median_ms=0.1084, py_lat_p50_ms=1.618, qps_b1=6848, p_load_w=7.95, dyn_energy_mj_per_inf=0.1871
+idle VDD_IN = 6.709 W
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p50/int8_src.engine
+[11/40] A_wdcnn_p50_int8_src: trt_gpu_median_ms=0.1152, py_lat_p50_ms=1.618, qps_b1=6999, p_load_w=8.011, dyn_energy_mj_per_inf=0.1861
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p50/int8_all.engine
+[12/40] A_wdcnn_p50_int8_all: trt_gpu_median_ms=0.1167, py_lat_p50_ms=1.618, qps_b1=7088, p_load_w=8.033, dyn_energy_mj_per_inf=0.1868
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p70/fp32.engine
+[13/40] A_wdcnn_p70_fp32: trt_gpu_median_ms=0.1006, py_lat_p50_ms=1.594, qps_b1=7880, p_load_w=8.03, dyn_energy_mj_per_inf=0.1677
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p70/fp16.engine
+[14/40] A_wdcnn_p70_fp16: trt_gpu_median_ms=0.132, py_lat_p50_ms=1.654, qps_b1=5844, p_load_w=7.964, dyn_energy_mj_per_inf=0.2149
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p70/int8_src.engine
+[15/40] A_wdcnn_p70_int8_src: trt_gpu_median_ms=0.1196, py_lat_p50_ms=1.624, qps_b1=6918, p_load_w=8.024, dyn_energy_mj_per_inf=0.1902
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p70/int8_all.engine
+[16/40] A_wdcnn_p70_int8_all: trt_gpu_median_ms=0.1182, py_lat_p50_ms=1.622, qps_b1=6863, p_load_w=8.043, dyn_energy_mj_per_inf=0.1944
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p85/fp32.engine
+[17/40] A_wdcnn_p85_fp32: trt_gpu_median_ms=0.09692, py_lat_p50_ms=1.589, qps_b1=7898, p_load_w=8.008, dyn_energy_mj_per_inf=0.1645
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p85/fp16.engine
+[18/40] A_wdcnn_p85_fp16: trt_gpu_median_ms=0.1333, py_lat_p50_ms=1.647, qps_b1=5793, p_load_w=7.911, dyn_energy_mj_per_inf=0.2075
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p85/int8_src.engine
+[19/40] A_wdcnn_p85_int8_src: trt_gpu_median_ms=0.0979, py_lat_p50_ms=1.578, qps_b1=8488, p_load_w=8.048, dyn_energy_mj_per_inf=0.1578
+[I] Loading bytes from jetson_out_ord_art/engines/A/wdcnn_p85/int8_all.engine
+[20/40] A_wdcnn_p85_int8_all: trt_gpu_median_ms=0.0957, py_lat_p50_ms=1.583, qps_b1=8654, p_load_w=8.044, dyn_energy_mj_per_inf=0.1543
+idle VDD_IN = 6.702 W
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p00/fp32.engine
+[21/40] A_resnet1d_p00_fp32: trt_gpu_median_ms=1.375, py_lat_p50_ms=2.618, qps_b1=726, p_load_w=8.707, dyn_energy_mj_per_inf=2.762
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p00/fp16.engine
+[22/40] A_resnet1d_p00_fp16: trt_gpu_median_ms=0.2427, py_lat_p50_ms=1.753, qps_b1=4051, p_load_w=8.965, dyn_energy_mj_per_inf=0.5586
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p00/int8_src.engine
+[23/40] A_resnet1d_p00_int8_src: trt_gpu_median_ms=0.2017, py_lat_p50_ms=1.692, qps_b1=4883, p_load_w=8.523, dyn_energy_mj_per_inf=0.373
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p00/int8_all.engine
+[24/40] A_resnet1d_p00_int8_all: trt_gpu_median_ms=0.2012, py_lat_p50_ms=1.695, qps_b1=4893, p_load_w=8.509, dyn_energy_mj_per_inf=0.3693
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p30/fp32.engine
+[25/40] A_resnet1d_p30_fp32: trt_gpu_median_ms=0.6758, py_lat_p50_ms=1.932, qps_b1=1473, p_load_w=8.501, dyn_energy_mj_per_inf=1.222
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p30/fp16.engine
+[26/40] A_resnet1d_p30_fp16: trt_gpu_median_ms=0.2148, py_lat_p50_ms=1.685, qps_b1=4585, p_load_w=8.683, dyn_energy_mj_per_inf=0.432
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p30/int8_src.engine
+[27/40] A_resnet1d_p30_int8_src: trt_gpu_median_ms=0.1875, py_lat_p50_ms=1.693, qps_b1=5213, p_load_w=8.422, dyn_energy_mj_per_inf=0.3299
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p30/int8_all.engine
+[28/40] A_resnet1d_p30_int8_all: trt_gpu_median_ms=0.1895, py_lat_p50_ms=1.684, qps_b1=5168, p_load_w=8.388, dyn_energy_mj_per_inf=0.3261
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p50/fp32.engine
+[29/40] A_resnet1d_p50_fp32: trt_gpu_median_ms=0.627, py_lat_p50_ms=1.859, qps_b1=1587, p_load_w=8.048, dyn_energy_mj_per_inf=0.8483
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p50/fp16.engine
+[30/40] A_resnet1d_p50_fp16: trt_gpu_median_ms=0.1916, py_lat_p50_ms=1.679, qps_b1=5101, p_load_w=8.432, dyn_energy_mj_per_inf=0.3391
+idle VDD_IN = 6.679 W
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p50/int8_src.engine
+[31/40] A_resnet1d_p50_int8_src: trt_gpu_median_ms=0.2065, py_lat_p50_ms=1.719, qps_b1=4535, p_load_w=8.206, dyn_energy_mj_per_inf=0.3368
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p50/int8_all.engine
+[32/40] A_resnet1d_p50_int8_all: trt_gpu_median_ms=0.2085, py_lat_p50_ms=1.735, qps_b1=4504, p_load_w=8.207, dyn_energy_mj_per_inf=0.3393
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p70/fp32.engine
+[33/40] A_resnet1d_p70_fp32: trt_gpu_median_ms=0.4414, py_lat_p50_ms=1.659, qps_b1=2248, p_load_w=8.075, dyn_energy_mj_per_inf=0.6212
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p70/fp16.engine
+[34/40] A_resnet1d_p70_fp16: trt_gpu_median_ms=0.1963, py_lat_p50_ms=1.688, qps_b1=4986, p_load_w=8.279, dyn_energy_mj_per_inf=0.321
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p70/int8_src.engine
+[35/40] A_resnet1d_p70_int8_src: trt_gpu_median_ms=0.1817, py_lat_p50_ms=1.687, qps_b1=5210, p_load_w=8.23, dyn_energy_mj_per_inf=0.2978
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p70/int8_all.engine
+[36/40] A_resnet1d_p70_int8_all: trt_gpu_median_ms=0.1814, py_lat_p50_ms=1.68, qps_b1=5185, p_load_w=8.231, dyn_energy_mj_per_inf=0.2994
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p85/fp32.engine
+[37/40] A_resnet1d_p85_fp32: trt_gpu_median_ms=0.2144, py_lat_p50_ms=1.62, qps_b1=4593, p_load_w=8.199, dyn_energy_mj_per_inf=0.331
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p85/fp16.engine
+[38/40] A_resnet1d_p85_fp16: trt_gpu_median_ms=0.1564, py_lat_p50_ms=1.669, qps_b1=5121, p_load_w=8.06, dyn_energy_mj_per_inf=0.2697
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p85/int8_src.engine
+[39/40] A_resnet1d_p85_int8_src: trt_gpu_median_ms=0.189, py_lat_p50_ms=1.708, qps_b1=4658, p_load_w=8.091, dyn_energy_mj_per_inf=0.3031
+[I] Loading bytes from jetson_out_ord_art/engines/A/resnet1d_p85/int8_all.engine
+[40/40] A_resnet1d_p85_int8_all: trt_gpu_median_ms=0.1885, py_lat_p50_ms=1.703, qps_b1=4637, p_load_w=8.165, dyn_energy_mj_per_inf=0.3205
+Wrote jetson_out_ord_art/bench/bench.csv (40 rows)

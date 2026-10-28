@@ -1,0 +1,119 @@
+Preprocessing 116 bearing x condition sets, signal=vibration, feature=order
+skip K001/C0 (cached)
+skip K001/C1 (cached)
+skip K001/C2 (cached)
+skip K001/C3 (cached)
+skip K002/C0 (cached)
+skip K002/C1 (cached)
+skip K002/C2 (cached)
+skip K002/C3 (cached)
+skip K003/C0 (cached)
+skip K003/C1 (cached)
+skip K004/C1 (cached)
+skip K003/C2 (cached)
+skip K004/C3 (cached)
+skip K005/C1 (cached)
+skip K005/C0 (cached)
+skip K004/C0 (cached)
+skip K006/C1 (cached)
+skip K005/C3 (cached)
+skip K003/C3 (cached)
+skip KA04/C0 (cached)
+skip K006/C2 (cached)
+skip K005/C2 (cached)
+skip KA04/C3 (cached)
+skip KA04/C2 (cached)
+skip KA04/C1 (cached)
+skip K004/C2 (cached)
+skip K006/C3 (cached)
+skip KA15/C0 (cached)
+skip KA15/C1 (cached)
+skip KA15/C2 (cached)
+skip K006/C0 (cached)
+skip KA16/C0 (cached)
+skip KA15/C3 (cached)
+skip KA16/C1 (cached)
+skip KA16/C3 (cached)
+skip KA22/C0 (cached)
+skip KA16/C2 (cached)
+skip KA22/C1 (cached)
+skip KA22/C3 (cached)
+skip KA22/C2 (cached)
+skip KA30/C0 (cached)
+skip KA30/C1 (cached)
+skip KA30/C3 (cached)
+skip KA30/C2 (cached)
+skip KI04/C2 (cached)
+skip KI04/C3 (cached)
+skip KI04/C1 (cached)
+skip KI04/C0 (cached)
+skip KI14/C2 (cached)
+skip KI14/C1 (cached)
+skip KI14/C3 (cached)
+skip KI16/C0 (cached)
+skip KI16/C1 (cached)
+skip KI16/C2 (cached)
+skip KI16/C3 (cached)
+skip KI17/C0 (cached)
+skip KI17/C1 (cached)
+skip KI17/C2 (cached)
+skip KI17/C3 (cached)
+skip KI18/C0 (cached)
+skip KI14/C0 (cached)
+skip KI18/C1 (cached)
+skip KI18/C2 (cached)
+skip KI21/C1 (cached)
+skip KI21/C2 (cached)
+skip KI21/C0 (cached)
+skip KI21/C3 (cached)
+skip KI18/C3 (cached)
+ok   KA01/C1: 240 windows from 20 files
+ok   KA05/C3: 242 windows from 20 files
+ok   KA06/C3: 240 windows from 20 files
+ok   KA03/C0: 247 windows from 20 files
+ok   KA03/C3: 243 windows from 20 files
+ok   KA06/C1: 240 windows from 20 files
+ok   KA06/C0: 241 windows from 20 files
+ok   KA06/C2: 240 windows from 20 files
+[WARN] N15_M01_F10_KA08_2.mat: Expecting matrix here
+ok   KA01/C0: 241 windows from 20 files
+ok   KA03/C1: 242 windows from 20 files
+ok   KA05/C1: 241 windows from 20 files
+ok   KA01/C3: 241 windows from 20 files
+ok   KA01/C2: 240 windows from 20 files
+ok   KA05/C0: 242 windows from 20 files
+ok   KA03/C2: 240 windows from 20 files
+ok   KA07/C3: 241 windows from 20 files
+ok   KA07/C2: 241 windows from 20 files
+ok   KA08/C2: 228 windows from 19 files  [WARN missing files [2]]
+ok   KA08/C1: 240 windows from 20 files
+ok   KA05/C2: 240 windows from 20 files
+ok   KA09/C1: 240 windows from 20 files
+ok   KA09/C2: 240 windows from 20 files
+ok   KA09/C0: 241 windows from 20 files
+ok   KA07/C1: 243 windows from 20 files
+ok   KA07/C0: 241 windows from 20 files
+ok   KA08/C0: 240 windows from 20 files
+ok   KA09/C3: 241 windows from 20 files
+ok   KA08/C3: 241 windows from 20 files
+ok   KI03/C0: 241 windows from 20 files
+ok   KI03/C1: 240 windows from 20 files
+ok   KI03/C2: 242 windows from 20 files
+ok   KI05/C2: 240 windows from 20 files
+ok   KI05/C0: 240 windows from 20 files
+ok   KI01/C3: 240 windows from 20 files
+ok   KI01/C1: 240 windows from 20 files
+ok   KI07/C1: 242 windows from 20 files
+ok   KI05/C1: 240 windows from 20 files
+ok   KI05/C3: 245 windows from 20 files
+ok   KI07/C2: 241 windows from 20 files
+ok   KI01/C0: 240 windows from 20 files
+ok   KI01/C2: 240 windows from 20 files
+ok   KI07/C3: 240 windows from 20 files
+ok   KI08/C0: 241 windows from 20 files
+ok   KI07/C0: 241 windows from 20 files
+ok   KI08/C2: 240 windows from 20 files
+ok   KI03/C3: 242 windows from 20 files
+ok   KI08/C1: 241 windows from 20 files
+ok   KI08/C3: 242 windows from 20 files
+Done.

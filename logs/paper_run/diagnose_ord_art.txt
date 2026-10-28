@@ -1,0 +1,105 @@
+Fold A  feature=order  train=['K004', 'K005', 'K006', 'KA22', 'KA30', 'KI17', 'KI18', 'KI21', 'KA01', 'KA03', 'KA05', 'KA06', 'KA07', 'KA08', 'KA09', 'KI01', 'KI03', 'KI05', 'KI07', 'KI08']  val=['K003', 'KA16', 'KI16']  test=['K001', 'K002', 'KA04', 'KA15', 'KI04', 'KI14']
+classes=['healthy', 'outer', 'inner']  chance balanced acc = 0.333
+
+== wdcnn: stopped after 15 epochs, best epoch 9 (val_nll 0.083)
+   train   bearings @ C0: balanced acc 1.000  (n=1215)
+   valfit  bearings @ C0: balanced acc 0.967  (n=91)
+   test    bearings @ C0: balanced acc 0.704  (n=363)
+   test    bearings @ C1: balanced acc 0.367
+   test    bearings @ C2: balanced acc 0.716
+   test    bearings @ C3: balanced acc 0.687
+   per test bearing @ source:  K001(H)=1.00  K002(H)=0.00  KA04(O)=1.00  KA15(O)=0.35  KI04(I)=1.00  KI14(I)=0.89
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [60  4 57]
+      outer    [31 81  8]
+      inner    [  7   0 115]
+
+== resnet1d: stopped after 20 epochs, best epoch 19 (val_nll 0.000)
+   train   bearings @ C0: balanced acc 1.000  (n=1215)
+   valfit  bearings @ C0: balanced acc 1.000  (n=91)
+   test    bearings @ C0: balanced acc 0.710  (n=363)
+   test    bearings @ C1: balanced acc 0.478
+   test    bearings @ C2: balanced acc 0.705
+   test    bearings @ C3: balanced acc 0.715
+   per test bearing @ source:  K001(H)=1.00  K002(H)=0.00  KA04(O)=1.00  KA15(O)=0.38  KI04(I)=1.00  KI14(I)=0.89
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [60  0 61]
+      outer    [35 83  2]
+      inner    [  6   1 115]
+
+== classical baseline on band-pooled spectra (same bearing-wise split)
+   logreg   train=0.958  test: C0=0.771  C1=0.609  C2=0.766  C3=0.726
+   rforest  train=0.998  test: C0=0.721  C1=0.412  C2=0.747  C3=0.704
+
+Reading guide: train >> test for both CNN and baseline -> bearings are not separable by this feature;
+try the envelope variant (config_env.yaml). Baseline OK but CNN poor -> CNN overfits; try --set train.weight_decay=0.01 or fewer epochs.
+Fold B  feature=order  train=['K001', 'K002', 'K006', 'KA04', 'KA15', 'KI04', 'KI14', 'KI21', 'KA01', 'KA03', 'KA05', 'KA06', 'KA07', 'KA08', 'KA09', 'KI01', 'KI03', 'KI05', 'KI07', 'KI08']  val=['K005', 'KA30', 'KI18']  test=['K003', 'K004', 'KA16', 'KA22', 'KI16', 'KI17']
+classes=['healthy', 'outer', 'inner']  chance balanced acc = 0.333
+
+== wdcnn: stopped after 17 epochs, best epoch 3 (val_nll 1.318)
+   train   bearings @ C0: balanced acc 1.000  (n=1217)
+   valfit  bearings @ C0: balanced acc 0.522  (n=90)
+   test    bearings @ C0: balanced acc 0.726  (n=362)
+   test    bearings @ C1: balanced acc 0.328
+   test    bearings @ C2: balanced acc 0.759
+   test    bearings @ C3: balanced acc 0.830
+   per test bearing @ source:  K003(H)=1.00  K004(H)=0.00  KA16(O)=1.00  KA22(O)=0.49  KI16(I)=1.00  KI17(I)=0.87
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [60 44 16]
+      outer    [ 0 90 31]
+      inner    [  0   8 113]
+
+== resnet1d: stopped after 14 epochs, best epoch 1 (val_nll 1.398)
+   train   bearings @ C0: balanced acc 1.000  (n=1217)
+   valfit  bearings @ C0: balanced acc 0.500  (n=90)
+   test    bearings @ C0: balanced acc 0.795  (n=362)
+   test    bearings @ C1: balanced acc 0.493
+   test    bearings @ C2: balanced acc 0.796
+   test    bearings @ C3: balanced acc 0.811
+   per test bearing @ source:  K003(H)=1.00  K004(H)=0.00  KA16(O)=1.00  KA22(O)=0.77  KI16(I)=1.00  KI17(I)=1.00
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [60 55  5]
+      outer    [  0 107  14]
+      inner    [  0   0 121]
+
+== classical baseline on band-pooled spectra (same bearing-wise split)
+   logreg   train=0.988  test: C0=0.740  C1=0.555  C2=0.728  C3=0.775
+   rforest  train=0.997  test: C0=0.709  C1=0.465  C2=0.723  C3=0.783
+
+Reading guide: train >> test for both CNN and baseline -> bearings are not separable by this feature;
+try the envelope variant (config_env.yaml). Baseline OK but CNN poor -> CNN overfits; try --set train.weight_decay=0.01 or fewer epochs.
+Fold C  feature=order  train=['K002', 'K003', 'K004', 'KA15', 'KA16', 'KA22', 'KI14', 'KI16', 'KI17', 'KA01', 'KA03', 'KA05', 'KA06', 'KA07', 'KA08', 'KA09', 'KI01', 'KI03', 'KI05', 'KI07', 'KI08']  val=['K001', 'KA04', 'KI04']  test=['K005', 'K006', 'KA30', 'KI18', 'KI21']
+classes=['healthy', 'outer', 'inner']  chance balanced acc = 0.333
+
+== wdcnn: stopped after 30 epochs, best epoch 28 (val_nll 0.003)
+   train   bearings @ C0: balanced acc 1.000  (n=1278)
+   valfit  bearings @ C0: balanced acc 1.000  (n=90)
+   test    bearings @ C0: balanced acc 0.712  (n=301)
+   test    bearings @ C1: balanced acc 0.349
+   test    bearings @ C2: balanced acc 0.703
+   test    bearings @ C3: balanced acc 0.559
+   per test bearing @ source:  K005(H)=0.48  K006(H)=1.00  KA30(O)=0.43  KI18(I)=1.00  KI21(I)=0.92
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [90 22  9]
+      outer    [ 3 26 31]
+      inner    [  0   5 115]
+
+== resnet1d: stopped after 23 epochs, best epoch 23 (val_nll 0.001)
+   train   bearings @ C0: balanced acc 1.000  (n=1278)
+   valfit  bearings @ C0: balanced acc 1.000  (n=90)
+   test    bearings @ C0: balanced acc 0.706  (n=301)
+   test    bearings @ C1: balanced acc 0.557
+   test    bearings @ C2: balanced acc 0.681
+   test    bearings @ C3: balanced acc 0.622
+   per test bearing @ source:  K005(H)=0.50  K006(H)=1.00  KA30(O)=0.43  KI18(I)=1.00  KI21(I)=0.87
+   confusion (rows=true healthy/outer/inner, cols=pred):
+      healthy  [91 26  4]
+      outer    [ 3 26 31]
+      inner    [  0   8 112]
+
+== classical baseline on band-pooled spectra (same bearing-wise split)
+   logreg   train=0.957  test: C0=0.695  C1=0.570  C2=0.640  C3=0.656
+   rforest  train=0.998  test: C0=0.693  C1=0.620  C2=0.650  C3=0.639
+
+Reading guide: train >> test for both CNN and baseline -> bearings are not separable by this feature;
+try the envelope variant (config_env.yaml). Baseline OK but CNN poor -> CNN overfits; try --set train.weight_decay=0.01 or fewer epochs.

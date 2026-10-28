@@ -1,0 +1,36 @@
+
+=== Fold A: calibration pool 11 bearings in 4 groups: [['K003', 'KI16', 'KA16'], ['K004', 'KI17', 'KA22'], ['K005', 'KI18', 'KA30'], ['K006', 'KI21']]  (+12 train-only bearings)
+  A/wdcnn group 1/4 ['K003', 'KI16', 'KA16']: 5 models in 2s
+  A/wdcnn group 2/4 ['K004', 'KI17', 'KA22']: 5 models in 1s
+  A/wdcnn group 3/4 ['K005', 'KI18', 'KA30']: 5 models in 1s
+  A/wdcnn group 4/4 ['K006', 'KI21']: 5 models in 1s
+[saved] A/wdcnn: out-of-bearing logits for 11 bearings
+  A/resnet1d group 1/4 ['K003', 'KI16', 'KA16']: 5 models in 18s
+  A/resnet1d group 2/4 ['K004', 'KI17', 'KA22']: 5 models in 18s
+  A/resnet1d group 3/4 ['K005', 'KI18', 'KA30']: 5 models in 18s
+  A/resnet1d group 4/4 ['K006', 'KI21']: 5 models in 19s
+[saved] A/resnet1d: out-of-bearing logits for 11 bearings
+
+=== Fold B: calibration pool 11 bearings in 4 groups: [['K001', 'KI04', 'KA04'], ['K002', 'KI14', 'KA15'], ['K005', 'KI18', 'KA30'], ['K006', 'KI21']]  (+12 train-only bearings)
+  B/wdcnn group 1/4 ['K001', 'KI04', 'KA04']: 5 models in 1s
+  B/wdcnn group 2/4 ['K002', 'KI14', 'KA15']: 5 models in 1s
+  B/wdcnn group 3/4 ['K005', 'KI18', 'KA30']: 5 models in 1s
+  B/wdcnn group 4/4 ['K006', 'KI21']: 5 models in 1s
+[saved] B/wdcnn: out-of-bearing logits for 11 bearings
+  B/resnet1d group 1/4 ['K001', 'KI04', 'KA04']: 5 models in 12s
+  B/resnet1d group 2/4 ['K002', 'KI14', 'KA15']: 5 models in 12s
+  B/resnet1d group 3/4 ['K005', 'KI18', 'KA30']: 5 models in 12s
+  B/resnet1d group 4/4 ['K006', 'KI21']: 5 models in 12s
+[saved] B/resnet1d: out-of-bearing logits for 11 bearings
+
+=== Fold C: calibration pool 12 bearings in 4 groups: [['K001', 'KI04', 'KA04'], ['K002', 'KI14', 'KA15'], ['K003', 'KI16', 'KA16'], ['K004', 'KI17', 'KA22']]  (+12 train-only bearings)
+  C/wdcnn group 1/4 ['K001', 'KI04', 'KA04']: 5 models in 2s
+  C/wdcnn group 2/4 ['K002', 'KI14', 'KA15']: 5 models in 2s
+  C/wdcnn group 3/4 ['K003', 'KI16', 'KA16']: 5 models in 2s
+  C/wdcnn group 4/4 ['K004', 'KI17', 'KA22']: 5 models in 2s
+[saved] C/wdcnn: out-of-bearing logits for 12 bearings
+  C/resnet1d group 1/4 ['K001', 'KI04', 'KA04']: 5 models in 28s
+  C/resnet1d group 2/4 ['K002', 'KI14', 'KA15']: 5 models in 28s
+  C/resnet1d group 3/4 ['K003', 'KI16', 'KA16']: 5 models in 28s
+  C/resnet1d group 4/4 ['K004', 'KI17', 'KA22']: 5 models in 28s
+[saved] C/resnet1d: out-of-bearing logits for 12 bearings

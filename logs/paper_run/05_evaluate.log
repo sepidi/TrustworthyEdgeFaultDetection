@@ -1,0 +1,5 @@
+Evaluating 30 (fold, model, precision) combinations
+  10/30 done
+  20/30 done
+  30/30 done
+Wrote results_ord_art/metrics.csv (480 rows) and results_ord_art/cp.csv (2880 rows)

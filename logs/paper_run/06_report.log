@@ -1,0 +1,4 @@
+[INFO] only workstation (PyTorch FP32) logits found - reporting those
+[INFO] latency missing for some configurations -> cost = relative MACs x bytes proxy ('Lat.' column in tab_selection.tex is then NOT milliseconds)
+[INFO] no bench.csv yet - selection uses a MACs x bytes proxy for cost; Pareto figure skipped
+Wrote figures to paper/figures_ord_art, tables to paper/tables_ord_art, results_ord_art/selection.csv, results_ord_art/summary.md

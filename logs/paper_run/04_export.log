@@ -1,0 +1,74 @@
+
+=== Fold A
+  valfit_C0: 91 windows, class counts [30 30 31]
+  valfit_C1: 90 windows, class counts [30 30 30]
+  valfit_C2: 95 windows, class counts [31 31 33]
+  valfit_C3: 93 windows, class counts [32 30 31]
+  valcal_C0: 90 windows, class counts [30 30 30]
+  valcal_C1: 90 windows, class counts [30 30 30]
+  valcal_C2: 90 windows, class counts [30 30 30]
+  valcal_C3: 91 windows, class counts [30 30 31]
+  test_C0: 363 windows, class counts [121 120 122]
+  test_C1: 361 windows, class counts [120 120 121]
+  test_C2: 362 windows, class counts [121 121 120]
+  test_C3: 362 windows, class counts [120 121 121]
+  exported wdcnn_p00  params=33955  ORT|diff|max=0.0033884048461914062
+  exported wdcnn_p30  params=16415  ORT|diff|max=0.0040130615234375
+  exported wdcnn_p50  params=8915  ORT|diff|max=0.0018153190612792969
+  exported wdcnn_p70  params=3243  ORT|diff|max=0.002187013626098633
+  exported wdcnn_p85  params=842  ORT|diff|max=0.0011403560638427734
+  exported resnet1d_p00  params=702499  ORT|diff|max=0.003379225730895996
+  exported resnet1d_p30  params=342094  ORT|diff|max=0.0017409920692443848
+  exported resnet1d_p50  params=176659  ORT|diff|max=0.0027043819427490234
+  exported resnet1d_p70  params=62619  ORT|diff|max=0.00026917457580566406
+  exported resnet1d_p85  params=15761  ORT|diff|max=0.00024199485778808594
+
+=== Fold B
+  valfit_C0: 90 windows, class counts [30 30 30]
+  valfit_C1: 91 windows, class counts [30 30 31]
+  valfit_C2: 91 windows, class counts [30 31 30]
+  valfit_C3: 91 windows, class counts [30 30 31]
+  valcal_C0: 90 windows, class counts [30 30 30]
+  valcal_C1: 90 windows, class counts [30 30 30]
+  valcal_C2: 90 windows, class counts [30 30 30]
+  valcal_C3: 90 windows, class counts [30 30 30]
+  test_C0: 362 windows, class counts [120 121 121]
+  test_C1: 365 windows, class counts [120 123 122]
+  test_C2: 368 windows, class counts [121 122 125]
+  test_C3: 365 windows, class counts [122 120 123]
+  exported wdcnn_p00  params=33955  ORT|diff|max=0.0027640163898468018
+  exported wdcnn_p30  params=16415  ORT|diff|max=0.003325819969177246
+  exported wdcnn_p50  params=8915  ORT|diff|max=0.0014454424381256104
+  exported wdcnn_p70  params=3243  ORT|diff|max=0.0008080005645751953
+  exported wdcnn_p85  params=842  ORT|diff|max=0.0011457204818725586
+  exported resnet1d_p00  params=702499  ORT|diff|max=0.0027856826782226562
+  exported resnet1d_p30  params=342094  ORT|diff|max=0.0010447502136230469
+  exported resnet1d_p50  params=176659  ORT|diff|max=0.0014729499816894531
+  exported resnet1d_p70  params=62619  ORT|diff|max=0.0001270771026611328
+  exported resnet1d_p85  params=15761  ORT|diff|max=0.00022363662719726562
+
+=== Fold C
+  valfit_C0: 90 windows, class counts [30 30 30]
+  valfit_C1: 90 windows, class counts [30 30 30]
+  valfit_C2: 90 windows, class counts [30 30 30]
+  valfit_C3: 90 windows, class counts [30 30 30]
+  valcal_C0: 90 windows, class counts [30 30 30]
+  valcal_C1: 91 windows, class counts [30 30 31]
+  valcal_C2: 91 windows, class counts [30 31 30]
+  valcal_C3: 90 windows, class counts [30 30 30]
+  test_C0: 301 windows, class counts [121  60 120]
+  test_C1: 302 windows, class counts [120  60 122]
+  test_C2: 301 windows, class counts [120  61 120]
+  test_C3: 301 windows, class counts [120  60 121]
+  exported wdcnn_p00  params=33955  ORT|diff|max=0.004924654960632324
+  exported wdcnn_p30  params=16415  ORT|diff|max=0.005154266953468323
+  exported wdcnn_p50  params=8915  ORT|diff|max=0.0016772150993347168
+  exported wdcnn_p70  params=3243  ORT|diff|max=0.0013200044631958008
+  exported wdcnn_p85  params=842  ORT|diff|max=0.000735163688659668
+  exported resnet1d_p00  params=702499  ORT|diff|max=0.0054492950439453125
+  exported resnet1d_p30  params=342094  ORT|diff|max=0.0015368461608886719
+  exported resnet1d_p50  params=176659  ORT|diff|max=0.0018951892852783203
+  exported resnet1d_p70  params=62619  ORT|diff|max=0.0003063678741455078
+  exported resnet1d_p85  params=15761  ORT|diff|max=0.00021338462829589844
+
+Wrote export_ord_art/manifest.json.  Copy 'export_ord_art' to the Jetson (scripts/sync_to_jetson.sh).

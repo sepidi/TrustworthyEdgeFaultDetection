@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: "If you use this code or the shipped artifacts, please cite the paper below and the Paderborn data set (Lessmeier et al., 2016)."
+title: "Replication package: Does Compression Erode Trust? Calibration and Conformal Coverage of Pruned and Quantized Bearing-Fault Diagnosis Models on Edge Hardware Under Operating Point Shift"
+type: software
+license: MIT
+version: "1.0.0"
+date-released: "2026-10-31"
+authors:
+  - family-names: "Çakın"
+    given-names: "Alperen"
+    affiliation: "Graduate School of Science and Engineering, Hacettepe University, Ankara, Türkiye"
+  - family-names: "Dilek"
+    given-names: "Selma"
+    affiliation: "Department of Computer Engineering, Hacettepe University, Ankara, Türkiye"
+keywords:
+  - bearing fault diagnosis
+  - conformal prediction
+  - calibration
+  - model compression
+  - pruning
+  - quantization
+  - TensorRT
+  - Jetson Orin Nano
+  - Paderborn bearing dataset
+preferred-citation:
+  type: article
+  title: "Does Compression Erode Trust? Calibration and Conformal Coverage of Pruned and Quantized Bearing-Fault Diagnosis Models on Edge Hardware Under Operating Point Shift"
+  authors:
+    - family-names: "Çakın"
+      given-names: "Alperen"
+    - family-names: "Dilek"
+      given-names: "Selma"
+  journal: "IEEE Journal of Emerging and Selected Topics in Industrial Electronics"
+  year: 2026
+  notes: "Submitted to the special section on Trustworthy Fault Diagnosis and Health Management for Industrial Electronics Systems."
+references:
+  - type: conference-paper
+    title: "Condition Monitoring of Bearing Damage in Electromechanical Drive Systems by Using Motor Current Signals of Electric Motors: A Benchmark Data Set for Data-Driven Classification"
+    authors:
+      - family-names: "Lessmeier"
+        given-names: "Christian"
+      - family-names: "Kimotho"
+        given-names: "James Kuria"
+      - family-names: "Zimmer"
+        given-names: "Detmar"
+      - family-names: "Sextro"
+        given-names: "Walter"
+    collection-title: "Proceedings of the European Conference of the Prognostics and Health Management Society"
+    volume: 3
+    year: 2016
