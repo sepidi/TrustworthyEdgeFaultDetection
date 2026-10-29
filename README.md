@@ -2,9 +2,9 @@
 
 Code, trained models and raw experimental outputs for
 
-> A. Çakın and S. Dilek, "Does Compression Erode Trust? Calibration and Conformal Coverage of Pruned and
-> Quantized Bearing-Fault Diagnosis Models on Edge Hardware Under Operating Point Shift,"
-> submitted to *IEEE Journal of Emerging and Selected Topics in Industrial Electronics* (special section
+> A. Çakın and S. Dilek, "Does Compression Erode Trust? Calibration of Compressed Fault  
+> Diagnosis Models on Edge Hardware Under Operating Point Shift," submitted to 
+> *IEEE Journal of Emerging and Selected Topics in Industrial Electronics* (special section
 > "Trustworthy Fault Diagnosis and Health Management for Industrial Electronics Systems"), 2026.
 
 The study trains two compact CNNs (WDCNN, 1-D ResNet) on the Paderborn bearing data set at one operating
