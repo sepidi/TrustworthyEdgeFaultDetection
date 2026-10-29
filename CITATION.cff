@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this code or the shipped artifacts, please cite the paper below and the Paderborn data set (Lessmeier et al., 2016)."
-title: "Replication package: Does Compression Erode Trust? Calibration and Conformal Coverage of Pruned and Quantized Bearing-Fault Diagnosis Models on Edge Hardware Under Operating Point Shift"
+title: "Replication package: Does Compression Erode Trust? Calibration of Compressed Fault Diagnosis Models on Edge Hardware Under Operating Point Shift"
 type: software
 license: MIT
 repository-code: "https://github.com/sepidi/TrustworthyEdgeFaultDetection"
@@ -25,7 +25,7 @@ keywords:
   - Paderborn bearing dataset
 preferred-citation:
   type: article
-  title: "Does Compression Erode Trust? Calibration and Conformal Coverage of Pruned and Quantized Bearing-Fault Diagnosis Models on Edge Hardware Under Operating Point Shift"
+  title: "Does Compression Erode Trust? Calibration of Compressed Fault Diagnosis Models on Edge Hardware Under Operating Point Shift"
   authors:
     - family-names: "Çakın"
       given-names: "Alperen"
