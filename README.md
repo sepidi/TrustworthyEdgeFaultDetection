@@ -2,8 +2,8 @@
 
 Code, trained models and raw experimental outputs for
 
-> A. Çakın and S. Dilek, "Does Compression Erode Trust? Calibration of Compressed Fault  
-> Diagnosis Models on Edge Hardware Under Operating Point Shift," submitted to 
+> A. Çakın and S. Dilek, "Does Compression Erode Trust? Calibration of Compressed Fault
+>  Diagnosis Models on Edge Hardware Under Operating Point Shift," submitted to 
 > *IEEE Journal of Emerging and Selected Topics in Industrial Electronics* (special section
 > "Trustworthy Fault Diagnosis and Health Management for Industrial Electronics Systems"), 2026.
 
@@ -422,5 +422,5 @@ Please cite the paper (see `CITATION.cff`) and the data set (Lessmeier et al., 2
 * Code and shipped artifacts: MIT licence (`LICENSE`).
 * Paderborn data set: not included; subject to the terms of the KAt-DataCenter, Paderborn University.
 
-Contact: Selma Dilek (selmadilek@hacettepe.edu.tr), Alperen Çakın (cakin.alperen@gmail.com),
+Contact: Selma Dilek (selma@ieee.org), Alperen Çakın (cakin.alperen@gmail.com),
 Hacettepe University, Ankara, Türkiye.
